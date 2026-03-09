@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grupo Lumeria | Especialistas en Espacios de Baño</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2a3a;
+      --navy-light: #243447;
+      --gold: #c9a84c;
+      --gold-light: #e0c070;
+      --white: #ffffff;
+      --off-white: #f7f5f1;
+      --gray: #6b7280;
+      --light-gray: #e8e4de;
+      --text: #2d2d2d;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== TOP BAR ===== */
+    .topbar {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      font-size: 12px;
+      padding: 8px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: 0.5px;
+    }
+    .topbar a { color: var(--gold); text-decoration: none; }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--navy);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon svg { width: 26px; height: 26px; }
+    .logo-text { line-height: 1.1; }
+    .logo-text span:first-child {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 1px;
+    }
+    .logo-text span:last-child {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 10px 20px !important;
+      border-radius: 2px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--navy) !important; color: var(--white) !important; }
+
+    /* ===== HERO SLIDER ===== */
+    .hero {
+      position: relative;
+      height: 90vh;
+      min-height: 600px;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      display: flex;
+      align-items: center;
+    }
+    .slide.active { opacity: 1; }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .slide.active .slide-bg { transform: scale(1); }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(26,42,58,0.85) 0%, rgba(26,42,58,0.3) 60%, transparent 100%);
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 80px;
+      max-width: 680px;
+      animation: fadeUp 1s ease 0.3s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      margin-bottom: 20px;
+    }
+
+    .slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .slide-title em { color: var(--gold); font-style: normal; }
+
+    .slide-subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .slide-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      text-decoration: none;
+      padding: 14px 32px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid var(--gold);
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: transparent; color: var(--gold); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      text-decoration: none;
+      padding: 14px 32px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--white); }
+
+    /* Slider controls */
+    .slider-dots {
+      position: absolute;
+      bottom: 36px;
+      left: 80px;
+      display: flex;
+      gap: 10px;
+      z-index: 5;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dot.active { background: var(--gold); width: 28px; border-radius: 4px; }
+
+    .slider-nav {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 5;
+    }
+    .slider-nav button {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider-nav button:hover { background: var(--gold); border-color: var(--gold); }
+
+    /* ===== INTRO STRIP ===== */
+    .intro-strip {
+      background: var(--navy);
+      color: white;
+      padding: 28px 80px;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .strip-item .icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section { padding: 90px 80px; }
+    .section-alt { background: var(--off-white); }
+
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-line {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 0 auto 20px;
+    }
+    .section-desc {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--gray);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-img {
+      position: relative;
+    }
+    .about-img img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      background: var(--gold);
+      color: white;
+      padding: 28px 32px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+    .about-badge .num {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .about-badge .label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .about-content { padding-right: 20px; }
+    .about-content .section-title { text-align: left; }
+    .about-content .section-line { margin: 0 0 24px; }
+    .about-content p {
+      color: var(--gray);
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+    .about-content strong { color: var(--navy); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 36px 0;
+    }
+    .stat-item { border-left: 3px solid var(--gold); padding-left: 16px; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+    }
+    .stat-lbl { font-size: 11px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ===== PRODUCTS ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .product-card:nth-child(1) { grid-column: span 2; }
+    .product-card img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .product-card:nth-child(1) img { height: 480px; }
+    .product-card:hover img { transform: scale(1.06); }
+
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,42,58,0.85) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      transition: background 0.3s;
+    }
+    .product-card:hover .product-overlay {
+      background: linear-gradient(0deg, rgba(26,42,58,0.92) 0%, rgba(26,42,58,0.3) 55%);
+    }
+
+    .product-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+      align-self: flex-start;
+    }
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .product-desc {
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      max-width: 400px;
+    }
+    .product-link {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .product-link::after { content: '→'; transition: transform 0.2s; }
+    .product-link:hover::after { transform: translateX(4px); }
+
+    /* Extra row */
+    .products-row2 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      max-width: 1300px;
+      margin: 2px auto 0;
+    }
+    .products-row2 .product-card img { height: 280px; }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 40px 28px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+      text-align: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    .service-card:hover { border-bottom-color: var(--gold); transform: translateY(-6px); }
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 28px;
+      transition: background 0.3s;
+    }
+    .service-card:hover .service-icon { background: var(--gold); }
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .service-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    /* ===== BRANDS ===== */
+    .brands-section { background: var(--navy); padding: 70px 80px; }
+    .brands-section .section-title { color: var(--white); }
+    .brands-section .section-desc { color: rgba(255,255,255,0.6); }
+
+    .brands-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .brand-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7);
+      padding: 12px 28px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .brand-pill:hover { background: var(--gold); color: white; border-color: var(--gold); }
+
+    /* ===== PORTFOLIO ===== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .portfolio-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .portfolio-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+      filter: brightness(0.9) saturate(0.85);
+    }
+    .portfolio-item:first-child img { height: 460px; }
+    .portfolio-item:hover img { transform: scale(1.07); filter: brightness(1) saturate(1); }
+
+    .portfolio-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(0deg, rgba(26,42,58,0.9) 0%, transparent 100%);
+      padding: 24px 20px 18px;
+      transform: translateY(10px);
+      transition: transform 0.3s;
+    }
+    .portfolio-item:hover .portfolio-info { transform: translateY(0); }
+    .portfolio-info h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .portfolio-info span {
+      font-size: 10px;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .portfolio-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+    .btn-outline {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 14px 40px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: var(--navy); color: white; }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.12);
+    }
+    .contact-info {
+      background: var(--navy);
+      color: white;
+      padding: 60px 50px;
+    }
+    .contact-info .section-title { color: white; text-align: left; font-size: 30px; }
+    .contact-info .section-line { margin: 0 0 24px; }
+    .contact-info p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.8; margin-bottom: 36px; }
+
+    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 14px; }
+    .ci-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .ci-text label { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .ci-text span { font-size: 14px; font-weight: 500; }
+
+    .contact-form { background: var(--white); padding: 60px 50px; }
+    .contact-form .section-title { font-size: 30px; text-align: left; margin-bottom: 8px; }
+    .contact-form .section-line { margin: 0 0 28px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      border: 1.5px solid var(--light-gray);
+      background: var(--off-white);
+      padding: 12px 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .btn-form {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+    }
+    .btn-form:hover { background: var(--gold); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0f1d2a;
+      color: rgba(255,255,255,0.65);
+      padding: 70px 80px 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-logo .logo-text span:first-child { color: var(--white); font-size: 20px; }
+    .footer-desc {
+      font-size: 13px;
+      line-height: 1.9;
+      margin: 16px 0 24px;
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .social-btn:hover { background: var(--gold); border-color: var(--gold); color: white; }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-col ul li a::before { content: '›'; color: var(--gold); }
+    .footer-col ul li a:hover { color: var(--white); }
+
+    .footer-news li { border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px; margin-bottom: 12px; }
+    .footer-news li a { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .footer-news li a span { font-size: 10px; color: var(--gold); letter-spacing: 0.5px; }
+    .footer-news li a::before { display: none; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+    .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 46px;
+      height: 46px;
+      background: var(--gold);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      z-index: 999;
+    }
+    .scroll-top.visible { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { background: var(--navy); }
+
+    /* ===== CLIENTES ===== */
+    .clients-section { background: var(--navy); padding: 90px 80px; }
+    .clients-section .section-tag { color: var(--gold); }
+    .clients-section .section-title { color: var(--white); }
+    .clients-section .section-desc { color: rgba(255,255,255,0.6); }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .client-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: default;
+    }
+    .client-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .client-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.3); transform: translateY(-6px); }
+    .client-card:hover::before { transform: scaleX(1); }
+
+    .client-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 700;
+      color: rgba(201,168,76,0.12);
+      line-height: 1;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      transition: color 0.4s;
+    }
+    .client-card:hover .client-number { color: rgba(201,168,76,0.22); }
+
+    .client-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 24px;
+      flex-shrink: 0;
+    }
+
+    .client-type {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .client-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .client-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.85;
+      margin-bottom: 28px;
+    }
+
+    .client-needs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .client-needs li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .client-needs li::before {
+      content: '›';
+      color: var(--gold);
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -1px;
+    }
+
+    .client-divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(201,168,76,0.4);
+      margin: 24px 0;
+      transition: width 0.4s, background 0.4s;
+    }
+    .client-card:hover .client-divider { width: 60px; background: var(--gold); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .section { padding: 70px 40px; }
+      nav, .topbar { padding-left: 24px; padding-right: 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 50px; }
+      .about-badge { right: 0; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .product-card:nth-child(1) { grid-column: span 2; }
+      .products-row2 { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .slide-content { padding: 0 40px; }
+      .slider-dots { left: 40px; }
+      .intro-strip { padding: 28px 40px; gap: 30px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .topbar { display: none; }
+      .hero { height: 75vh; }
+      .slide-content { padding: 0 24px; max-width: 100%; }
+      .products-grid, .products-row2 { grid-template-columns: 1fr; }
+      .product-card:nth-child(1) { grid-column: span 1; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-item:first-child { grid-column: span 2; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .clients-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .intro-strip { flex-direction: column; padding: 24px; }
+      footer { padding: 50px 24px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>📞 <strong>+34 900 000 000</strong> &nbsp;|&nbsp; ✉ <a href="/cdn-cgi/l/email-protection#88e1e6eee7c8effafdf8e7e4fde5edfae1e9a6ebe7e5"><span class="__cf_email__" data-cfemail="dab3b4bcb59abda8afaab5b6afb7bfa8b3bbf4b9b5b7">[email&#160;protected]</span></a></span>
+  <span>Lunes a Viernes: 9:00 – 19:00 &nbsp;|&nbsp; Sábados: 10:00 – 14:00</span>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-icon">
+      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 2 L22 8 L22 18 L13 24 L4 18 L4 8 Z" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+        <circle cx="13" cy="13" r="3" fill="#c9a84c"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span>Grupo Lumeria</span>
+      <span>Espacios · Baño · Cerámica</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#compania">Compañía</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hero" id="inicio">
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=80')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag">Especialistas desde hace más de 30 años</span>
+      <h1 class="slide-title">Tu espacio de baño, <em>perfectamente</em> diseñado</h1>
+      <p class="slide-subtitle">Transformamos cada baño en un lugar bello, íntimo y lleno de sensaciones con los mejores productos y marcas del mercado.</p>
+      <div class="slide-btns">
+        <a href="#productos" class="btn-primary">Ver Productos</a>
+        <a href="#contacto" class="btn-secondary">Solicitar Cita</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1603825491103-bd638b1873b4?w=1600&q=80')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag">Colección 2025</span>
+      <h1 class="slide-title">Cerámica de alta <em>calidad</em> para tu hogar</h1>
+      <p class="slide-subtitle">La cerámica es una de las mejores opciones de revestimiento por su durabilidad y facilidad de limpieza. Descubre nuestras colecciones.</p>
+      <div class="slide-btns">
+        <a href="#productos" class="btn-primary">Descubrir</a>
+        <a href="#portfolio" class="btn-secondary">Ver Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1600&q=80')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag">Eficiencia energética</span>
+      <h1 class="slide-title">Climatización <em>inteligente</em> para tu hogar</h1>
+      <p class="slide-subtitle">Ahorra hasta un 70% en tu factura energética con nuestros sistemas de aerotermia y climatización de última generación.</p>
+      <div class="slide-btns">
+        <a href="#servicios" class="btn-primary">Más Información</a>
+        <a href="#contacto" class="btn-secondary">Pedir Presupuesto</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div class="slider-dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+  </div>
+
+  <!-- Nav arrows -->
+  <div class="slider-nav">
+    <button onclick="prevSlide()">&#8593;</button>
+    <button onclick="nextSlide()">&#8595;</button>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="strip-item"><div class="icon">🏆</div><span>Más de 30 años de experiencia</span></div>
+  <div class="strip-item"><div class="icon">🌟</div><span>Las mejores marcas del sector</span></div>
+  <div class="strip-item"><div class="icon">📐</div><span>Diseño a medida y personalizado</span></div>
+  <div class="strip-item"><div class="icon">🔧</div><span>Servicio de instalación propio</span></div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="compania">
+  <div class="about-grid">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&q=80" alt="Showroom Grupo Lumeria"/>
+      <div class="about-badge">
+        <span class="num">30+</span>
+        <span class="label">Años de confianza</span>
+      </div>
+    </div>
+    <div class="about-content">
+      <p class="section-tag">Quiénes somos</p>
+      <h2 class="section-title">Grupo Lumeria,<br/>especialistas en espacios de baño y cerámica</h2>
+      <div class="section-line"></div>
+      <p>Somos <strong>especialistas en espacios de baño, cerámica y climatización</strong>, una empresa moderna con carácter y comprometida con los nuevos tiempos. En estos más de 30 años de historia hemos conseguido ser una referencia en el sector.</p>
+      <p>Contamos con un equipo de profesionales altamente cualificados y una amplia red de tiendas distribuidas por toda la geografía española, listos para ayudarte a crear el espacio que siempre has soñado.</p>
+      <div class="stats">
+        <div class="stat-item"><span class="stat-num">30+</span><span class="stat-lbl">Años en el sector</span></div>
+        <div class="stat-item"><span class="stat-num">12</span><span class="stat-lbl">Delegaciones</span></div>
+        <div class="stat-item"><span class="stat-num">500+</span><span class="stat-lbl">Proyectos realizados</span></div>
+      </div>
+      <a href="#contacto" class="btn-primary" style="display:inline-block;">Conoce Nuestro Equipo</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section section-alt" id="productos">
+  <div class="section-header">
+    <span class="section-tag">Nuestros Productos</span>
+    <h2 class="section-title">Todo lo que necesitas para tu espacio</h2>
+    <div class="section-line"></div>
+    <p class="section-desc">Ofrecemos una selección premium de productos para baño, cerámica y climatización, trabajando con las mejores marcas del mercado.</p>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80" alt="Espacios de Baño"/>
+      <div class="product-overlay">
+        <span class="product-tag">Premium</span>
+        <h3 class="product-name">Espacios de Baño</h3>
+        <p class="product-desc">Concebimos cada espacio de baño como un lugar bello, íntimo y lleno de sensaciones, con productos fabricados con materiales de alta calidad.</p>
+        <a href="#contacto" class="product-link">Descubrir más</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&q=80" alt="Grifería"/>
+      <div class="product-overlay">
+        <span class="product-tag">Diseño</span>
+        <h3 class="product-name">Grifería</h3>
+        <p class="product-desc">Las últimas soluciones en grifería con líneas innovadoras y formas orgánicas para la experiencia perfecta.</p>
+        <a href="#contacto" class="product-link">Descubrir más</a>
+      </div>
+    </div>
+  </div>
+  <div class="products-row2">
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Cerámica"/>
+      <div class="product-overlay">
+        <span class="product-tag">Revestimiento</span>
+        <h3 class="product-name">Cerámica</h3>
+        <p class="product-desc">La mejor opción por su durabilidad y facilidad de limpieza.</p>
+        <a href="#contacto" class="product-link">Ver más</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80" alt="Climatización"/>
+      <div class="product-overlay">
+        <span class="product-tag">Eficiencia</span>
+        <h3 class="product-name">Climatización</h3>
+        <p class="product-desc">Calderas, aerotermia, AC y agua caliente sanitaria.</p>
+        <a href="#contacto" class="product-link">Ver más</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" alt="Cocinas"/>
+      <div class="product-overlay">
+        <span class="product-tag">Nuevo</span>
+        <h3 class="product-name">Espacios de Cocina</h3>
+        <p class="product-desc">Muebles de cocina a medida altamente personalizables.</p>
+        <a href="#contacto" class="product-link">Ver más</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=400&q=80" alt="Reformas"/>
+      <div class="product-overlay">
+        <span class="product-tag">Integral</span>
+        <h3 class="product-name">Reformas</h3>
+        <p class="product-desc">Servicio de reforma integral con transporte propio incluido.</p>
+        <a href="#contacto" class="product-link">Ver más</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="servicios">
+  <div class="section-header">
+    <span class="section-tag">Servicios</span>
+    <h2 class="section-title">¿En qué podemos ayudarte?</h2>
+    <div class="section-line"></div>
+    <p class="section-desc">Ofrecemos una experiencia completa, desde el diseño y la selección de materiales hasta la instalación y el servicio postventa.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3 class="service-name">Diseño Personalizado</h3>
+      <p class="service-desc">Nuestros expertos te ayudan a diseñar el espacio de baño perfecto según tus gustos y necesidades.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3 class="service-name">Presupuesto Sin Compromiso</h3>
+      <p class="service-desc">Te ofrecemos un presupuesto detallado y sin compromiso para tu reforma o instalación.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3 class="service-name">Instalación Profesional</h3>
+      <p class="service-desc">Equipo propio de instaladores certificados para garantizar la calidad de cada proyecto.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📞</div>
+      <h3 class="service-name">Servicio Postventa</h3>
+      <p class="service-desc">Te acompañamos después de la instalación con un servicio de atención y mantenimiento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-section">
+  <div class="section-header">
+    <span class="section-tag" style="color:var(--gold)">Nuestras Marcas</span>
+    <h2 class="section-title" style="color:white">Trabajamos con los mejores fabricantes</h2>
+    <div class="section-line"></div>
+    <p class="section-desc" style="color:rgba(255,255,255,0.6)">Colaboramos con las marcas más reconocidas del sector para ofrecerte siempre la mejor calidad y garantía.</p>
+  </div>
+  <div class="brands-grid">
+    <div class="brand-pill">Roca</div>
+    <div class="brand-pill">Grohe</div>
+    <div class="brand-pill">Hansgrohe</div>
+    <div class="brand-pill">Gala</div>
+    <div class="brand-pill">Laufen</div>
+    <div class="brand-pill">Fiora</div>
+    <div class="brand-pill">Marazzi</div>
+    <div class="brand-pill">Nobili</div>
+    <div class="brand-pill">Baxi</div>
+    <div class="brand-pill">Pamesa</div>
+    <div class="brand-pill">Geotiles</div>
+    <div class="brand-pill">Duscholux</div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section section-alt" id="portfolio">
+  <div class="section-header">
+    <span class="section-tag">Obras de Referencia</span>
+    <h2 class="section-title">Proyectos que nos definen</h2>
+    <div class="section-line"></div>
+    <p class="section-desc">Una selección de nuestros trabajos más representativos en proyectos residenciales y singulares.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <img src="https://images.unsplash.com/photo-1600210491892-03d54079d6ac?w=700&q=80" alt="Proyecto Residencial Madrid"/>
+      <div class="portfolio-info">
+        <h4>Residencial Las Palomas – Madrid</h4>
+        <span>Residencial · 48 viviendas</span>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&q=80" alt="Hotel Costabella"/>
+      <div class="portfolio-info">
+        <h4>Hotel Costabella – Barcelona</h4>
+        <span>Hostelería · Reforma integral</span>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Edificio Nexus"/>
+      <div class="portfolio-info">
+        <h4>Edificio Nexus – Valencia</h4>
+        <span>Singular · Oficinas</span>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=400&q=80" alt="Villa Serena"/>
+      <div class="portfolio-info">
+        <h4>Villa Serena – Málaga</h4>
+        <span>Residencial · Unifamiliar</span>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=80" alt="Proyecto Sevilla"/>
+      <div class="portfolio-info">
+        <h4>Complejo Marina – Sevilla</h4>
+        <span>Residencial · 24 viviendas</span>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-cta">
+    <a href="#contacto" class="btn-outline">Ver Todo el Portfolio</a>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section class="clients-section" id="clientes">
+  <div class="section-header">
+    <span class="section-tag">A quién nos dirigimos</span>
+    <h2 class="section-title">Tipología de clientes</h2>
+    <div class="section-line"></div>
+    <p class="section-desc">Trabajamos con un modelo híbrido B2C y B2B, atendiendo a tres perfiles diferenciados con necesidades y procesos propios.</p>
+  </div>
+  <div class="clients-grid">
+
+    <!-- Card 1 -->
+    <div class="client-card">
+      <span class="client-number">01</span>
+      <div class="client-icon">🏠</div>
+      <span class="client-type">B2C · Particulares</span>
+      <h3 class="client-name">Clientes Particulares</h3>
+      <p class="client-desc">Personas que realizan reformas en su vivienda, especialmente en baño o cocina. Buscan inspiración, asesoramiento y seguridad en la decisión de compra. La visita al showroom es un momento clave para visualizar soluciones completas.</p>
+      <div class="client-divider"></div>
+      <ul class="client-needs">
+        <li>Claridad y cercanía en el asesoramiento</li>
+        <li>Confianza en el personal de la tienda</li>
+        <li>Presupuesto fácil de entender</li>
+        <li>Acompañamiento durante toda la reforma</li>
+      </ul>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="client-card">
+      <span class="client-number">02</span>
+      <div class="client-icon">🔨</div>
+      <span class="client-type">B2B · Profesionales</span>
+      <h3 class="client-name">Clientes Profesionales</h3>
+      <p class="client-desc">Instaladores, constructores, arquitectos e interioristas que trabajan de forma recurrente y buscan rapidez, disponibilidad de producto y soporte técnico especializado para gestionar múltiples proyectos al año.</p>
+      <div class="client-divider"></div>
+      <ul class="client-needs">
+        <li>Agilidad en la elaboración de presupuestos</li>
+        <li>Disponibilidad de stock y rapidez de suministro</li>
+        <li>Asesoramiento técnico especializado</li>
+        <li>Comunicación fluida con el equipo comercial</li>
+      </ul>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="client-card">
+      <span class="client-number">03</span>
+      <div class="client-icon">🏗️</div>
+      <span class="client-type">B2B · Gran Proyecto</span>
+      <h3 class="client-name">Proyectos y Red Comercial</h3>
+      <p class="client-desc">Constructoras, promotoras y clientes estratégicos que llegan a través de nuestra red comercial. El volumen de compra es mayor y el proceso está más estructurado, con un carácter estratégico y ventas recurrentes.</p>
+      <div class="client-divider"></div>
+      <ul class="client-needs">
+        <li>Gestión de pedidos compleja y coordinada</li>
+        <li>Seguimiento de múltiples referencias</li>
+        <li>Coordinación con arquitectos, instaladores y promotores</li>
+        <li>Relación estratégica a largo plazo</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contacto">
+  <div class="section-header">
+    <span class="section-tag">Contacto</span>
+    <h2 class="section-title">¿Hablamos de tu proyecto?</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="section-tag" style="color:var(--gold)">Estamos aquí para ayudarte</p>
+      <h3 class="section-title">Contacta con<br/>Grupo Lumeria</h3>
+      <div class="section-line"></div>
+      <p>¿Tienes alguna duda sobre nuestros productos o servicios? ¿Quieres solicitar un presupuesto sin compromiso? Escríbenos o llámanos, estaremos encantados de atenderte.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="ci-icon">📞</div>
+          <div class="ci-text">
+            <label>Teléfono</label>
+            <span>+34 900 000 000</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">✉</div>
+          <div class="ci-text">
+            <label>Email</label>
+            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a9c0c7cfc6e9cedbdcd9c6c5dcc4ccdbc0c887cac6c4">[email&#160;protected]</a></span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📍</div>
+          <div class="ci-text">
+            <label>Sede Central</label>
+            <span>Calle Ejemplo, 123 · Madrid, España</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">🕐</div>
+          <div class="ci-text">
+            <label>Horario</label>
+            <span>Lun–Vie 9:00–19:00 · Sáb 10:00–14:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <p class="section-tag">Solicitud de contacto</p>
+      <h3 class="section-title">Envíanos tu consulta</h3>
+      <div class="section-line"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre"/>
+        </div>
+        <div class="form-group">
+          <label>Apellidos</label>
+          <input type="text" placeholder="Tus apellidos"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="+34 600 000 000"/>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="tu@email.com"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Servicio de interés</label>
+        <select>
+          <option>Espacios de Baño</option>
+          <option>Grifería</option>
+          <option>Cerámica</option>
+          <option>Climatización</option>
+          <option>Reformas</option>
+          <option>Cocinas</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea placeholder="Cuéntanos tu proyecto o consulta..."></textarea>
+      </div>
+      <button class="btn-form">Enviar Consulta →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a class="logo footer-logo" href="#">
+        <div class="logo-icon">
+          <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 2 L22 8 L22 18 L13 24 L4 18 L4 8 Z" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+            <circle cx="13" cy="13" r="3" fill="#c9a84c"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span>Grupo Lumeria</span>
+          <span>Espacios · Baño · Cerámica</span>
+        </div>
+      </a>
+      <p class="footer-desc">Especialistas en espacios de baño, cerámica y climatización desde hace más de 30 años. Una empresa moderna, con carácter y comprometida con la calidad.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">ig</a>
+        <a href="#" class="social-btn">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Compañía</h4>
+      <ul>
+        <li><a href="#">Quiénes somos</a></li>
+        <li><a href="#">Delegaciones</a></li>
+        <li><a href="#">Franquicias</a></li>
+        <li><a href="#">Trabaja con nosotros</a></li>
+        <li><a href="#">Código Ético</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Productos</h4>
+      <ul>
+        <li><a href="#">Espacios de Baño</a></li>
+        <li><a href="#">Grifería</a></li>
+        <li><a href="#">Cerámica</a></li>
+        <li><a href="#">Climatización</a></li>
+        <li><a href="#">Reformas</a></li>
+        <li><a href="#">Cocinas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Últimas Noticias</h4>
+      <ul class="footer-news">
+        <li><a href="#"><span>Marzo 2025</span>Tendencias en diseño de baños para 2025</a></li>
+        <li><a href="#"><span>Febrero 2025</span>Aerotermia: ahorra hasta un 70% en tu factura</a></li>
+        <li><a href="#"><span>Enero 2025</span>Los mejores revestimientos cerámicos del año</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Grupo Lumeria, S.A. Todos los derechos reservados.</span>
+    <span><a href="#">Aviso Legal</a> · <a href="#">Política de Privacidad</a> · <a href="#">Política de Cookies</a></span>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Slider
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+
+  function goToSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function nextSlide() { goToSlide(current + 1); }
+  function prevSlide() { goToSlide(current - 1); }
+
+  setInterval(nextSlide, 6000);
+
+  // Scroll top button
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Intersection Observer for fade-in sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e 
